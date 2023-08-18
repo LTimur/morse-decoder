@@ -38,7 +38,15 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
+    let morseList = expr.match(/.{1,10}/g).map(e=>e.replaceAll(/\*+/g, " ").replace(/11/g, "-").replace(/10/g, ".").match(/[^0\s]+|\s+/g))
+    
+    return morseList.map(item => {
+        if (item == ' ') {
+            return item;
+        } else {
+            return MORSE_TABLE[item];
+        }
+    }).join('');
 }
 
 module.exports = {
